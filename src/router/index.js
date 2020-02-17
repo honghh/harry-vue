@@ -61,18 +61,29 @@ export const constantRoutes = [
     name: '系统管理',
     meta: {
       title: '系统管理',
-      icon: 'nested' // 图标
+      icon: 'sys' // 图标
     },
     children: [
       {
         path: 'user',
-        component: () => import('@/views/user/index'),
+        component: () => import('@/views/modules/sys/user/index'),
         meta: { title: '用户管理' }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/user/index'),
-        meta: { title: 'menu2' }
+        path: 'menu',
+        component: () => import('@/views/modules/sys/menu/index'),
+        meta: { title: '菜单管理' }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/modules/sys/role/index'),
+        meta: { title: '角色管理' }
+      },
+      {
+        path: 'index',
+        component: () => import('@/views/modules/sys/icons/index'),
+        name: 'Icons',
+        meta: { title: 'Icons', icon: 'icon', noCache: true }
       }
     ]
   },
