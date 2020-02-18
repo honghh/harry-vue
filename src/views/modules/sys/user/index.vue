@@ -139,8 +139,7 @@ export default {
       total: 0,
       listLoading: false,
       dialogVisible: false,
-      user: Object.assign({}, defaultUser),
-      isEdit: false
+      user: Object.assign({}, defaultUser)
     }
   },
   created() {
@@ -177,7 +176,6 @@ export default {
             message: '删除成功 ！',
             duration: 1500
           })
-          this.getList()
           this.getList()
         })
       })

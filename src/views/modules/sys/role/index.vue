@@ -72,7 +72,7 @@
               type="danger"
               icon="el-icon-delete"
               size="mini"
-              @click.stop="deleteHandle(scope.row.id)"
+              @click.stop="handleDelete(scope.row.id)"
             >删除
             </el-button>
           </template>
@@ -118,8 +118,7 @@ export default {
       total: 0,
       listLoading: false,
       addOrUpdateVisible: false,
-      role: Object.assign({}, defaultRole),
-      isEdit: false
+      role: Object.assign({}, defaultRole)
     }
   },
   created() {
@@ -133,15 +132,6 @@ export default {
       this.listQuery.pageNum = 1
       this.getList()
     },
-    handleSizeChange(val) {
-      this.listQuery.pageNum = 1
-      this.listQuery.pageSize = val
-      this.getList()
-    },
-    handleCurrentChange(val) {
-      this.listQuery.pageNum = val
-      this.getList()
-    },
     // 新增 / 修改
     addOrUpdateHandle(id) {
       this.addOrUpdateVisible = true
@@ -152,19 +142,22 @@ export default {
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
-        this.listLoading = false
         this.list = response.data.list
         this.total = response.data.total
+
+        setTimeout(() => {
+          this.listLoading = false
+        }, 0.3 * 1000)
       })
     },
-    deleteHandle(id) {
+    handleDelete(id) {
       this.$confirm(`确定对[id=${id}]进行删除操作?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         deleteRole(id).then(({ data }) => {
-          this.$message({
+          this.$notify({
             message: '操作成功',
             type: 'success',
             duration: 1500,

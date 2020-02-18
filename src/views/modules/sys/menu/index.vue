@@ -1,109 +1,103 @@
 <template>
-  <div class="mod-menu">
-    <el-card class="operate-container" shadow="never">
-      <i class="el-icon-tickets" />
-      <span>数据列表</span>
-    </el-card>
-    <el-form
-      :inline="true"
-      :model="dataForm"
-    >
-      <el-form-item>
+  <div class="app-container">
+    <div class="mod-menu">
+      <el-card class="operate-container" shadow="never">
+        <i class="el-icon-tickets" />
+        <span>数据列表</span>
         <el-button plain size="mini" class="btn-add" style="margin-left: 20px" @click="addOrUpdateHandle()">添加
         </el-button>
-      </el-form-item>
-    </el-form>
-    <el-table
-      :data="dataList"
-      row-key="id"
-      border
-      style="width: 100%; "
-    >
-      <el-table-column
-        prop="name"
-        header-align="center"
-        min-width="150"
-        label="名称"
-      />
-      <el-table-column
-        header-align="center"
-        align="center"
-        label="图标"
+      </el-card>
+      <el-table
+        :data="dataList"
+        row-key="id"
+        border
+        style="width: 100%; "
       >
-        <template slot-scope="scope">
-          <svg-icon :icon-class="scope.row.icon || ''" />
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="type"
-        header-align="center"
-        align="center"
-        label="类型"
-      >
-        <template slot-scope="scope">
-          <el-tag v-if="scope.row.type === 0" size="mini">目录</el-tag>
-          <el-tag v-else-if="scope.row.type === 1" size="mini" type="success">菜单</el-tag>
-          <el-tag v-else-if="scope.row.type === 2" size="mini" type="info">按钮</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="sort"
-        header-align="center"
-        align="center"
-        label="排序号"
+        <el-table-column
+          prop="name"
+          header-align="center"
+          min-width="150"
+          label="名称"
+        />
+        <el-table-column
+          header-align="center"
+          align="center"
+          label="图标"
+        >
+          <template slot-scope="scope">
+            <svg-icon :icon-class="scope.row.icon || ''" />
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="type"
+          header-align="center"
+          align="center"
+          label="类型"
+        >
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.type === 0" size="mini">目录</el-tag>
+            <el-tag v-else-if="scope.row.type === 1" size="mini" type="success">菜单</el-tag>
+            <el-tag v-else-if="scope.row.type === 2" size="mini" type="info">按钮</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="sort"
+          header-align="center"
+          align="center"
+          label="排序号"
+        />
+        <el-table-column
+          prop="uri"
+          header-align="center"
+          align="center"
+          width="150"
+          :show-overflow-tooltip="true"
+          label="菜单URL"
+        />
+        <el-table-column
+          prop="value"
+          header-align="center"
+          align="center"
+          width="150"
+          :show-overflow-tooltip="true"
+          label="授权标识"
+        />
+        <el-table-column
+          fixed="right"
+          header-align="center"
+          align="center"
+          width="200"
+          label="操作"
+        >
+          <template slot-scope="scope">
+            <el-button
+              plain
+              type="primary"
+              size="mini"
+              icon="el-icon-edit"
+              @click="addOrUpdateHandle(scope.row.id)"
+            >修改
+            </el-button>
+            <el-button
+              plain
+              size="mini"
+              icon="el-icon-delete"
+              type="danger"
+              @click="deleteHandle(scope.row.id)"
+            >
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <!-- 弹窗, 新增 / 修改 -->
+      <add-or-update
+        v-if="addOrUpdateVisible"
+        ref="addOrUpdate"
+        @refreshDataList="getList()"
       />
-      <el-table-column
-        prop="uri"
-        header-align="center"
-        align="center"
-        width="150"
-        :show-overflow-tooltip="true"
-        label="菜单URL"
-      />
-      <el-table-column
-        prop="value"
-        header-align="center"
-        align="center"
-        width="150"
-        :show-overflow-tooltip="true"
-        label="授权标识"
-      />
-      <el-table-column
-        fixed="right"
-        header-align="center"
-        align="center"
-        width="200"
-        label="操作"
-      >
-        <template slot-scope="scope">
-          <el-button
-            plain
-            type="primary"
-            size="mini"
-            icon="el-icon-edit"
-            @click="addOrUpdateHandle(scope.row.id)"
-          >修改
-          </el-button>
-          <el-button
-            plain
-            size="mini"
-            icon="el-icon-delete"
-            type="danger"
-            @click="deleteHandle(scope.row.id)"
-          >
-            删除
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <!-- 弹窗, 新增 / 修改 -->
-    <add-or-update
-      v-if="addOrUpdateVisible"
-      ref="addOrUpdate"
-      @refreshDataList="getDataList"
-    />
+    </div>
   </div>
-
 </template>
 
 <script>
@@ -124,11 +118,11 @@ export default {
     }
   },
   created() {
-    this.getDataList()
+    this.getList()
   },
   methods: {
     // 获取数据列表
-    getDataList() {
+    getList() {
       this.dataListLoading = true
       fetchList(null).then(({ data }) => {
         this.dataList = treeDataTranslate(data, 'id')
@@ -150,12 +144,12 @@ export default {
         type: 'warning'
       }).then(() => {
         deleteMenu(id).then(({ data }) => {
-          this.$message({
+          this.$notify({
             message: '删除成功',
             type: 'success',
             duration: 1000
           })
-          this.getDataList()
+          this.getList()
         })
       }).catch(() => {
       })

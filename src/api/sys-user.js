@@ -37,3 +37,14 @@ export function infoUser(id) {
     method: 'get'
   })
 }
+
+export function updatePassword(password, newPassword) {
+  return request({
+    url: '/user/updatePassword',
+    method: 'post',
+    data: {
+      password,
+      newPassword
+    }
+  })
+}
