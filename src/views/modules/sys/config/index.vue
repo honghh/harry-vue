@@ -3,7 +3,7 @@
     <el-card class="filter-container" shadow="never">
       <div>
         <i class="el-icon-search" />
-        <span>筛选搜索</span>
+        <span >筛选搜索</span>
         <el-button
           plain
           style="float:right"
@@ -24,8 +24,8 @@
       </div>
       <div style="margin-top: 15px">
         <el-form :inline="true" :model="listQuery" size="mini" label-width="140px">
-          <el-form-item label="用户名称/昵称：">
-            <el-input v-model="listQuery.keyword" class="input-width" placeholder="用户名称/昵称" clearable @keyup.enter.native="handleSearchList" />
+          <el-form-item label="关键字：">
+            <el-input v-model="listQuery.keyword" class="input-width" placeholder="类型/键值/名称" clearable @keyup.enter.native="handleSearchList" />
           </el-form-item>
         </el-form>
       </div>
@@ -48,30 +48,27 @@
         <el-table-column label="ID" width="100" align="center">
           <template slot-scope="scope">{{ scope.row.id }}</template>
         </el-table-column>
-        <el-table-column label="用户名称" align="center">
-          <template slot-scope="scope">{{ scope.row.username }}</template>
+        <el-table-column label="类型" width="200" align="center">
+          <template slot-scope="scope">{{ scope.row.paramType }}</template>
         </el-table-column>
-        <el-table-column label="用户昵称" align="center">
-          <template slot-scope="scope">{{ scope.row.nickName }}</template>
+        <el-table-column label="键值" width="80" align="center">
+          <template slot-scope="scope">{{ scope.row.paramKey }}</template>
         </el-table-column>
-        <el-table-column label="邮箱" width="140" align="center">
-          <template slot-scope="scope">{{ scope.row.email }}</template>
+        <el-table-column label="名称" width="300" align="center">
+          <template slot-scope="scope">{{ scope.row.paramName }}</template>
         </el-table-column>
-        <el-table-column label="备注" width="140" align="center">
-          <template slot-scope="scope">{{ scope.row.note }}</template>
-        </el-table-column>
-        <el-table-column label="创建时间" width="200" align="center">
-          <template slot-scope="scope">{{ scope.row.createTime }}</template>
-        </el-table-column>
-        <el-table-column label="启用/禁用" width="200" align="center">
+        <el-table-column label="启用/禁用" width="140" align="center">
           <template slot-scope="scope">
             <el-switch
-              v-model="scope.row.status"
-              :active-value="1"
-              :inactive-value="0"
-              @change="handleStatusChange(scope.$index, scope.row)"
+                    v-model="scope.row.status"
+                    :active-value="1"
+                    :inactive-value="0"
+                    @change="handleStatusChange(scope.$index, scope.row)"
             />
           </template>
+        </el-table-column>
+        <el-table-column label="备注"  align="center">
+          <template slot-scope="scope">{{ scope.row.remark }}</template>
         </el-table-column>
         <el-table-column label="操作" width="200" align="center">
           <template slot-scope="scope">
@@ -106,7 +103,7 @@
   </div>
 </template>
 <script>
-import { fetchList, updateStatus, deleteUser } from '@/api/sys-user'
+import { fetchList, updateStatus, deleteConfig } from '@/api/sys-config'
 import Pagination from '@/components/Pagination'
 import AddOrUpdate from './user-add-or-update'
 
@@ -115,14 +112,13 @@ const defaultListQuery = {
   pageSize: 5,
   keyword: null
 }
-const defaultUser = {
+const defaultConfig = {
   id: null,
-  nickName: null,
-  username: null,
-  note: null,
-  email: null,
+  paramType: null,
+  paramKey: null,
+  paramName: null,
+  remark: null,
   status: 0
-
 }
 export default {
   name: 'UserList',
@@ -141,7 +137,7 @@ export default {
       total: 0,
       listLoading: false,
       dialogVisible: false,
-      user: Object.assign({}, defaultUser)
+      user: Object.assign({}, defaultConfig)
     }
   },
   created() {
@@ -172,7 +168,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        deleteUser(row.id).then(response => {
+        deleteConfig(row.id).then(response => {
           this.$notify({
             type: 'success',
             message: '删除成功 ！',
@@ -204,10 +200,10 @@ export default {
         this.getList()
       })
     },
-    addOrUpdateHandle(id) {
+    addOrUpdateHandle(id, row) {
       this.dialogVisible = true
       this.$nextTick(() => {
-        this.$refs.addOrUpdate.init(id)
+        this.$refs.addOrUpdate.init(id, row)
       })
     }
   }

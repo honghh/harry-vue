@@ -3,7 +3,7 @@
  */
 
 /**
- * @param {string} path
+ * @config {string} path
  * @returns {Boolean}
  */
 export function isExternal(path) {
@@ -11,7 +11,7 @@ export function isExternal(path) {
 }
 
 /**
- * @param {string} str
+ * @config {string} str
  * @returns {Boolean}
  */
 export function validUsername(str) {
@@ -20,7 +20,7 @@ export function validUsername(str) {
 }
 /**
  * 邮箱
- * @param {*} s
+ * @config {*} s
  */
 export function isEmail(s) {
   return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)

@@ -80,10 +80,45 @@ export const constantRoutes = [
         meta: { title: '角色管理' }
       },
       {
-        path: 'index',
-        component: () => import('@/views/modules/sys/icons/index'),
+        path: 'config',
+        component: () => import('@/views/modules/sys/config/index'),
+        meta: { title: '参数配置' }
+      }
+    ]
+  },
+  {
+    path: '/temp',
+    component: Layout,
+    redirect: '/temp/icons',
+    name: '参考模板',
+    meta: {
+      title: '参考模板',
+      icon: 'star' // 图标
+    },
+    children: [
+      {
+        path: 'icons',
+        component: () => import('@/views/modules/temp/icons/index'),
         name: 'Icons',
         meta: { title: 'Icons', icon: 'icon', noCache: true }
+      },
+      {
+        path: 'keyboard',
+        component: () => import('@/views/modules/temp/charts/keyboard'),
+        name: 'KeyboardChart',
+        meta: { title: 'Keyboard Chart', noCache: false }
+      },
+      {
+        path: 'line',
+        component: () => import('@/views/modules/temp/charts/line'),
+        name: 'LineChart',
+        meta: { title: 'Line Chart', noCache: true }
+      },
+      {
+        path: 'mix-chart',
+        component: () => import('@/views/modules/temp/charts/mix-chart'),
+        name: 'MixChart',
+        meta: { title: 'Mix Chart', noCache: true }
       }
     ]
   },

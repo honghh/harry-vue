@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchList(params) {
   return request({
-    url: '/user/list',
+    url: '/sys/user/list',
     method: 'get',
     params: params
   })
@@ -10,7 +10,7 @@ export function fetchList(params) {
 
 export function updateUser(id, data) {
   return request({
-    url: '/user/update/' + id,
+    url: '/sys/user/update/' + id,
     method: 'post',
     data: data
   })
@@ -18,14 +18,14 @@ export function updateUser(id, data) {
 
 export function deleteUser(id) {
   return request({
-    url: '/user/delete/' + id,
+    url: '/sys/user/delete/' + id,
     method: 'post'
   })
 }
 
 export function updateStatus(id, params) {
   return request({
-    url: '/user/update/status/' + id,
+    url: '/sys/user/update/status/' + id,
     method: 'post',
     params: params
   })
@@ -33,14 +33,14 @@ export function updateStatus(id, params) {
 
 export function infoUser(id) {
   return request({
-    url: '/user/info/' + id,
+    url: '/sys/user/info/' + id,
     method: 'get'
   })
 }
 
 export function updatePassword(password, newPassword) {
   return request({
-    url: '/user/updatePassword',
+    url: '/sys/user/updatePassword',
     method: 'post',
     data: {
       password,

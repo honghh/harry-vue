@@ -4,8 +4,8 @@
 
 /**
  * Parse the time to string
- * @param {(Object|string|number)} time
- * @param {string} cFormat
+ * @config {(Object|string|number)} time
+ * @config {string} cFormat
  * @returns {string | null}
  */
 export function parseTime(time, cFormat) {
@@ -44,8 +44,8 @@ export function parseTime(time, cFormat) {
 }
 
 /**
- * @param {number} time
- * @param {string} option
+ * @config {number} time
+ * @config {string} option
  * @returns {string}
  */
 export function formatTime(time, option) {
@@ -87,7 +87,7 @@ export function formatTime(time, option) {
 }
 
 /**
- * @param {string} url
+ * @config {string} url
  * @returns {Object}
  */
 export function param2Obj(url) {
@@ -108,9 +108,9 @@ export function param2Obj(url) {
 
 /**
  * 树形数据转换
- * @param {*} data
- * @param {*} id
- * @param {*} pid
+ * @config {*} data
+ * @config {*} id
+ * @config {*} pid
  */
 export function treeDataTranslate(data, id = 'id', pid = 'pid') {
   const res = []
@@ -137,9 +137,9 @@ export function treeDataTranslate(data, id = 'id', pid = 'pid') {
 
 /**
  * 将数组中的parentId列表取出，倒序排列
- * @param {*} data
- * @param {*} id
- * @param {*} pid
+ * @config {*} data
+ * @config {*} id
+ * @config {*} pid
  */
 export function idList(data, val, id = 'id', children = 'children') {
   const res = []
@@ -148,9 +148,9 @@ export function idList(data, val, id = 'id', children = 'children') {
 }
 
 /**
- * @param {*} data
- * @param {*} id
- * @param {*} pid
+ * @config {*} data
+ * @config {*} id
+ * @config {*} pid
  */
 function idListFromTree(data, val, res = [], id = 'id', children = 'children') {
   for (let i = 0; i < data.length; i++) {
@@ -165,5 +165,46 @@ function idListFromTree(data, val, res = [], id = 'id', children = 'children') {
       res.push(element[id])
       return true
     }
+  }
+}
+
+/**
+ * @param {Function} func
+ * @param {number} wait
+ * @param {boolean} immediate
+ * @return {*}
+ */
+export function debounce(func, wait, immediate) {
+  let timeout, args, context, timestamp, result
+
+  const later = function() {
+    // 据上一次触发时间间隔
+    const last = +new Date() - timestamp
+
+    // 上次被包装函数被调用时间间隔 last 小于设定时间间隔 wait
+    if (last < wait && last > 0) {
+      timeout = setTimeout(later, wait - last)
+    } else {
+      timeout = null
+      // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
+      if (!immediate) {
+        result = func.apply(context, args)
+        if (!timeout) context = args = null
+      }
+    }
+  }
+
+  return function(...args) {
+    context = this
+    timestamp = +new Date()
+    const callNow = immediate && !timeout
+    // 如果延时不存在，重新设定延时
+    if (!timeout) timeout = setTimeout(later, wait)
+    if (callNow) {
+      result = func.apply(context, args)
+      context = args = null
+    }
+
+    return result
   }
 }

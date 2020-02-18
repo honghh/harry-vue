@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function fetchList(params) {
   return request({
-    url: '/menu/list',
+    url: '/sys/menu/list',
     method: 'get',
     params: params
   })
@@ -10,7 +10,7 @@ export function fetchList(params) {
 
 export function fetchListNav(params) {
   return request({
-    url: '/menu/nav',
+    url: '/sys/menu/nav',
     method: 'get',
     params: params
   })
@@ -18,7 +18,7 @@ export function fetchListNav(params) {
 
 export function infoMenu(id) {
   return request({
-    url: '/menu/info/' + id,
+    url: '/sys/menu/info/' + id,
     method: 'get',
     params: id
   })
@@ -26,7 +26,7 @@ export function infoMenu(id) {
 
 export function listSimpleMenuNoButton(params) {
   return request({
-    url: '/menu/listSimpleMenuNoButton',
+    url: '/sys/menu/listSimpleMenuNoButton',
     method: 'get',
     params: params
   })
@@ -34,14 +34,14 @@ export function listSimpleMenuNoButton(params) {
 
 export function deleteMenu(id) {
   return request({
-    url: '/menu/delete/' + id,
+    url: '/sys/menu/delete/' + id,
     method: 'get'
   })
 }
 
 export function createMenu(data) {
   return request({
-    url: '/menu/create',
+    url: '/sys/menu/create',
     method: 'post',
     data: data
   })
@@ -49,7 +49,7 @@ export function createMenu(data) {
 
 export function updateMenu(id, data) {
   return request({
-    url: '/menu/update/' + id,
+    url: '/sys/menu/update/' + id,
     method: 'post',
     data: data
   })

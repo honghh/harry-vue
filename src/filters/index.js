@@ -3,8 +3,8 @@ export { parseTime, formatTime } from '@/utils'
 
 /**
  * Show plural label if time is plural number
- * @param {number} time
- * @param {string} label
+ * @config {number} time
+ * @config {string} label
  * @return {string}
  */
 function pluralize(time, label) {
@@ -15,7 +15,7 @@ function pluralize(time, label) {
 }
 
 /**
- * @param {number} time
+ * @config {number} time
  */
 export function timeAgo(time) {
   const between = Date.now() / 1000 - Number(time)
@@ -31,8 +31,8 @@ export function timeAgo(time) {
 /**
  * Number formatting
  * like 10000 => 10k
- * @param {number} num
- * @param {number} digits
+ * @config {number} num
+ * @config {number} digits
  */
 export function numberFormatter(num, digits) {
   const si = [
@@ -53,7 +53,7 @@ export function numberFormatter(num, digits) {
 
 /**
  * 10000 => "10,000"
- * @param {number} num
+ * @config {number} num
  */
 export function toThousandFilter(num) {
   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
@@ -61,7 +61,7 @@ export function toThousandFilter(num) {
 
 /**
  * Upper case first char
- * @param {String} string
+ * @config {String} string
  */
 export function uppercaseFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
