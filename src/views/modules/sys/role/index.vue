@@ -102,6 +102,7 @@ const defaultListQuery = {
 const defaultRole = {
   id: null,
   name: null,
+  description: null,
   sort: null,
   status: 0
 }

@@ -77,11 +77,10 @@ export default {
           infoRole(this.dataForm.id).then(({ data }) => {
             this.dataForm.name = data.name
             this.dataForm.description = data.description
-            var idx = data.menuIdList.indexOf(this.tempKey)
+            const idx = data.menuIdList.indexOf(this.tempKey)
             if (idx !== -1) {
               data.menuIdList.splice(idx, data.menuIdList.length - idx)
             }
-            console.log(data.menuIdList)
             this.$refs.menuListTree.setCheckedKeys(data.menuIdList)
           })
         }

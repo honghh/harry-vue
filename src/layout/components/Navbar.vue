@@ -39,19 +39,18 @@
       </el-dropdown>
     </div>
 
-
     <!--     修改密码弹窗-->
     <el-dialog
-            title="修改密码"
-            :visible.sync="updatePasswordVisible"
-            :append-to-body="true"
+      title="修改密码"
+      :visible.sync="updatePasswordVisible"
+      :append-to-body="true"
     >
       <el-form
-              ref="dataForm"
-              :model="dataForm"
-              :rules="dataRule"
-              label-width="80px"
-              @keyup.enter.native="dataFormSubmit()"
+        ref="dataForm"
+        :model="dataForm"
+        :rules="dataRule"
+        label-width="80px"
+        @keyup.enter.native="dataFormSubmit()"
       >
         <el-form-item label="账号">
           <span>{{ name }}</span>
@@ -85,6 +84,14 @@ import Search from '@/components/HeaderSearch'
 import { updatePassword } from '@/api/sys-user'
 
 export default {
+  components: {
+    Breadcrumb,
+    Hamburger,
+    ErrorLog,
+    Screenfull,
+    SizeSelect,
+    Search
+  },
   data() {
     const validateConfirmPassword = (rule, value, callback) => {
       if (this.dataForm.newPassword !== value) {
@@ -113,14 +120,6 @@ export default {
       },
       updatePasswordVisible: false
     }
-  },
-  components: {
-    Breadcrumb,
-    Hamburger,
-    ErrorLog,
-    Screenfull,
-    SizeSelect,
-    Search
   },
   computed: {
     ...mapGetters([

@@ -62,42 +62,6 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/sys',
-    component: Layout,
-    redirect: '/sys/user',
-    name: '系统管理',
-    meta: {
-      title: '系统管理',
-      icon: 'sys' // 图标
-    },
-    children: [
-      {
-        path: 'user',
-        component: () => import('@/views/modules/sys/user/index'),
-        name: '用户管理',
-        meta: { title: '用户管理' }
-      },
-      {
-        path: 'menu',
-        component: () => import('@/views/modules/sys/menu/index'),
-        name: '菜单管理',
-        meta: { title: '菜单管理' }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/modules/sys/role/index'),
-        name: '角色管理',
-        meta: { title: '角色管理' }
-      },
-      {
-        path: 'config',
-        component: () => import('@/views/modules/sys/config/index'),
-        name: '参数配置',
-        meta: { title: '参数配置' }
-      }
-    ]
-  },
-  {
     path: '/temp',
     component: Layout,
     redirect: '/temp/icons',
@@ -132,12 +96,48 @@ export const constantRoutes = [
         meta: { title: 'Mix Chart', noCache: true }
       }
     ]
+  }
+]
+export const asyncRoutes = [
+  {
+    path: '/sys',
+    component: Layout,
+    redirect: '/sys/user',
+    name: '系统管理',
+    meta: {
+      title: '系统管理',
+      icon: 'sys' // 图标
+    },
+    children: [
+      {
+        path: '/sys/user',
+        component: () => import('@/views/modules/sys/user/index'),
+        name: '用户管理',
+        meta: { title: '用户管理', roles: ['sys:user:read'] }
+      },
+      {
+        path: '/sys/menu',
+        component: () => import('@/views/modules/sys/menu/index'),
+        name: '菜单管理',
+        meta: { title: '菜单管理', roles: ['sys:menu:read'] }
+      },
+      {
+        path: '/sys/role',
+        component: () => import('@/views/modules/sys/role/index'),
+        name: '角色管理',
+        meta: { title: '角色管理', roles: ['sys:role:read'] }
+      },
+      {
+        path: '/sys/config',
+        component: () => import('@/views/modules/sys/config/index'),
+        name: '参数配置',
+        meta: { title: '参数配置', roles: ['sys:config:read'] }
+      }
+    ]
   },
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
-
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
