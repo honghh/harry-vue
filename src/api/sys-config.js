@@ -11,7 +11,7 @@ export function fetchList(params) {
 export function updateConfig(id, data) {
   return request({
     url: '/sys/config/update/' + id,
-    method: 'post',
+    method: 'put',
     data: data
   })
 }
@@ -19,14 +19,14 @@ export function updateConfig(id, data) {
 export function deleteConfig(id) {
   return request({
     url: '/sys/config/delete/' + id,
-    method: 'post'
+    method: 'delete'
   })
 }
 
 export function updateStatus(id, params) {
   return request({
     url: '/sys/config/update/status/' + id,
-    method: 'post',
+    method: 'put',
     params: params
   })
 }

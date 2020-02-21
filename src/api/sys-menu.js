@@ -35,7 +35,7 @@ export function listSimpleMenuNoButton(params) {
 export function deleteMenu(id) {
   return request({
     url: '/sys/menu/delete/' + id,
-    method: 'get'
+    method: 'delete'
   })
 }
 
@@ -50,7 +50,7 @@ export function createMenu(data) {
 export function updateMenu(id, data) {
   return request({
     url: '/sys/menu/update/' + id,
-    method: 'post',
+    method: 'put',
     data: data
   })
 }
