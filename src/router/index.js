@@ -73,25 +73,25 @@ export const constantRoutes = [
     children: [
       {
         path: 'icons',
-        component: () => import('@/views/modules/temp/icons/index'),
+        component: () => import('@/views/temp/icons/index'),
         name: 'Icons',
         meta: { title: 'Icons', icon: 'icon', noCache: true }
       },
       {
         path: 'keyboard',
-        component: () => import('@/views/modules/temp/charts/keyboard'),
+        component: () => import('@/views/temp/charts/keyboard'),
         name: 'KeyboardChart',
         meta: { title: 'Keyboard Chart', noCache: false }
       },
       {
         path: 'line',
-        component: () => import('@/views/modules/temp/charts/line'),
+        component: () => import('@/views/temp/charts/line'),
         name: 'LineChart',
         meta: { title: 'Line Chart', noCache: true }
       },
       {
         path: 'mix-chart',
-        component: () => import('@/views/modules/temp/charts/mix-chart'),
+        component: () => import('@/views/temp/charts/mix-chart'),
         name: 'MixChart',
         meta: { title: 'Mix Chart', noCache: true }
       }
@@ -111,25 +111,25 @@ export const asyncRoutes = [
     children: [
       {
         path: '/sys/user',
-        component: () => import('@/views/modules/sys/user/index'),
+        component: () => import('@/views/sys/user/index'),
         name: '用户管理',
         meta: { title: '用户管理', roles: ['sys:user:read'] }
       },
       {
         path: '/sys/menu',
-        component: () => import('@/views/modules/sys/menu/index'),
+        component: () => import('@/views/sys/menu/index'),
         name: '菜单管理',
         meta: { title: '菜单管理', roles: ['sys:menu:read'] }
       },
       {
         path: '/sys/role',
-        component: () => import('@/views/modules/sys/role/index'),
+        component: () => import('@/views/sys/role/index'),
         name: '角色管理',
         meta: { title: '角色管理', roles: ['sys:role:read'] }
       },
       {
         path: '/sys/config',
-        component: () => import('@/views/modules/sys/config/index'),
+        component: () => import('@/views/sys/config/index'),
         name: '参数配置',
         meta: { title: '参数配置', roles: ['sys:config:read'] }
       }
