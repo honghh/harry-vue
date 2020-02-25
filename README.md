@@ -46,3 +46,22 @@ npm run lint
 # 代码格式检查并自动修复
 npm run lint -- --fix
 ```
+
+## 配套服务端地址
+
+> - **GitHub:** https://github.com/honghh/harry.git
+> - **Gitee:** https://gitee.com/honghh/harry.git
+
+- idea、eclipse需安装lombok插件，不然会提示找不到entity的get set方法
+- 创建数据库harry，数据库编码为UTF-8
+- 执行db/mysql.sql文件，初始化数据
+- 修改application-dev.yml，更新MySQL账号和密码
+- Eclipse、IDEA运行PlatformApplication.java，则可启动项目
+- Swagger注解路径：http://localhost:9001/swagger-ui.html
+
+<br> 
+
+ **联系作者**
+- 微信公众号：![在这里插入图片描述](https://img-blog.csdnimg.cn/20200225085656400.png)
+- 通过微信公众号联系我呀！！！
+<br> 
