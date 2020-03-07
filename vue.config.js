@@ -6,13 +6,13 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue Admin Template' // page title
+const name = defaultSettings.title || 'Harry 后台管理' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
-// port = 9528 npm run dev OR npm run dev --port = 9528
+// port = 10001 npm run dev OR npm run dev --port = 10001
 const port = process.env.port || process.env.npm_config_port || 10001 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
@@ -36,9 +36,7 @@ module.exports = {
       '/api': {
         target: 'http://localhost:9001',
         ws: true,
-        pathRewrite: {
-          '^/api': ''
-        }
+        changeOrigin: true
       }
     },
     overlay: {
