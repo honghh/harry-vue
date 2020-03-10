@@ -17,6 +17,10 @@ import '@/permission' // permission control
 
 import * as filters from './filters' // global filters
 
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/index.css'
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -34,6 +38,8 @@ if (process.env.NODE_ENV === 'production') {
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
+
+Vue.use(VXETable)
 
 // register global utility filters
 Object.keys(filters).forEach(key => {

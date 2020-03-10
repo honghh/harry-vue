@@ -146,6 +146,24 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/monitor',
+    component: Layout,
+    redirect: '/monitor/online',
+    name: '运维管理',
+    meta: {
+      title: '运维管理',
+      icon: 'sys' // 图标
+    },
+    children: [
+      {
+        path: '/monitor/online',
+        component: () => import('@/views/monitor/online/index'),
+        name: '在线用户',
+        meta: { title: '在线用户' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
