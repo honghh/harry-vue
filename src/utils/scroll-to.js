@@ -14,7 +14,7 @@ var requestAnimFrame = (function() {
 
 /**
  * Because it's so fucking difficult to detect the scrolling element, just move them all
- * @config {number} amount
+ * @param {number} amount
  */
 function move(amount) {
   document.documentElement.scrollTop = amount
@@ -27,9 +27,9 @@ function position() {
 }
 
 /**
- * @config {number} to
- * @config {number} duration
- * @config {Function} callback
+ * @param {number} to
+ * @param {number} duration
+ * @param {Function} callback
  */
 export function scrollTo(to, duration, callback) {
   const start = position()
