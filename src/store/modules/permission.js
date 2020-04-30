@@ -38,6 +38,8 @@ function filterAsyncRouter(asyncRouterMap) {
         route.component = Layout
       } else {
         route.component = loadView(route.component)
+        console.info(route.component)
+
       }
     }
     if (route.children != null && route.children && route.children.length) {
@@ -47,8 +49,8 @@ function filterAsyncRouter(asyncRouterMap) {
   })
 }
 
-export const loadView = (view) => { // 路由懒加载
-  return () => import(`@/views/${view}`)
+export const loadView = (view) => {
+  return (resolve) => require([`@/views/${view}`],resolve)
 }
 
 export default permission
