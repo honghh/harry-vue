@@ -37,6 +37,7 @@
                   v-hasPermi="['system:menu:edit']"
           />
           <el-button
+                  v-if="scope.row.type !== 2"
                   size="mini"
                   circle type="primary"
                   icon="el-icon-plus"
@@ -72,14 +73,14 @@
           <el-col :span="24">
             <el-form-item label="菜单类型" prop="type">
               <el-radio-group v-model="form.type">
-                <el-radio label="0">目录</el-radio>
-                <el-radio label="1">菜单</el-radio>
-                <el-radio label="2">按钮</el-radio>
+                <el-radio :label="0">目录</el-radio>
+                <el-radio :label="1">菜单</el-radio>
+                <el-radio :label="2">按钮</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item v-if="form.type !== '2'" label="菜单图标">
+            <el-form-item v-if="form.type !== 2" label="菜单图标">
               <el-popover
                 placement="bottom-start"
                 width="460"
@@ -111,7 +112,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item v-if="form.type !== '2'" label="是否外链">
+            <el-form-item v-if="form.type !== 2" label="是否外链">
               <el-radio-group v-model="form.outerLink">
                 <el-radio label="0">否</el-radio>
                 <el-radio label="1">是</el-radio>
@@ -119,22 +120,22 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item v-if="form.type !== '2'" label="路由地址" prop="path">
+            <el-form-item v-if="form.type !== 2" label="路由地址" prop="path">
               <el-input v-model="form.path" placeholder="请输入路由地址" />
             </el-form-item>
           </el-col>
-          <el-col :span="12" v-if="form.type === '1'">
+          <el-col :span="12" v-if="form.type === 1">
             <el-form-item label="组件路径" prop="uri">
               <el-input v-model="form.uri" placeholder="请输入组件路径" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item v-if="form.type !== '0'" label="权限标识">
+            <el-form-item v-if="form.type !== 0" label="权限标识">
               <el-input v-model="form.value" placeholder="请权限标识" maxlength="50" />
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item v-if="form.type !== '2'" label="菜单状态">
+            <el-form-item v-if="form.type !== 2" label="菜单状态">
               <el-radio-group v-model="form.status">
                 <el-radio
                   v-for="dict in visibleOptions"
@@ -256,9 +257,9 @@ export default {
         pid: 0,
         name: undefined,
         icon: undefined,
-        type: "0",
-        sort: undefined,
-        outerLink: "1",
+        type: 0,
+        sort: 1,
+        outerLink: "0",
         visible: "0"
       };
       this.resetForm("form");
@@ -273,7 +274,9 @@ export default {
       this.getTreeselect();
       if (row != null) {
         this.form.pid = row.id;
+        this.form.type = row.type+1;
       }
+      this.form.type = 0;
       this.open = true;
       this.title = "添加菜单";
     },
