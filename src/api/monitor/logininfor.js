@@ -30,6 +30,7 @@ export function exportLogininfor(query) {
   return request({
     url: '/monitor/loginLog/export',
     method: 'get',
+    responseType:'blob',
     params: query
   })
 }

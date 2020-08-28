@@ -56,6 +56,7 @@ export function exportConfig(query) {
   return request({
     url: '/sys/config/export',
     method: 'get',
+    responseType:'blob',
     params: query
   })
 }

@@ -532,7 +532,7 @@ export default {
         }).then(function() {
           return exportRole(queryParams);
         }).then(response => {
-          this.download(response.msg);
+          this.fileDownload(response.data, "角色管理.xlsx");
         }).catch(function() {});
     }
   }

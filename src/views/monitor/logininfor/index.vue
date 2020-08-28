@@ -21,22 +21,22 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-select
-          v-model="queryParams.status"
-          placeholder="登录状态"
-          clearable
-          size="small"
-          style="width: 240px"
-        >
-          <el-option
-            v-for="dict in statusOptions"
-            :key="dict.dictValue"
-            :label="dict.dictLabel"
-            :value="dict.dictValue"
-          />
-        </el-select>
-      </el-form-item>
+<!--      <el-form-item label="状态" prop="status">-->
+<!--        <el-select-->
+<!--          v-model="queryParams.status"-->
+<!--          placeholder="登录状态"-->
+<!--          clearable-->
+<!--          size="small"-->
+<!--          style="width: 240px"-->
+<!--        >-->
+<!--          <el-option-->
+<!--            v-for="dict in statusOptions"-->
+<!--            :key="dict.dictValue"-->
+<!--            :label="dict.dictLabel"-->
+<!--            :value="dict.dictValue"-->
+<!--          />-->
+<!--        </el-select>-->
+<!--      </el-form-item>-->
       <el-form-item label="登录时间">
         <el-date-picker
                 v-model="dateRange"
@@ -90,15 +90,15 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="访问编号" align="center" prop="id" />
       <el-table-column label="用户名称" align="center" prop="username" />
-      <el-table-column label="登录地址" align="center" prop="address" width="130" :show-overflow-tooltip="true" />
+      <el-table-column label="主机" align="center" prop="ip" width="130" :show-overflow-tooltip="true" />
       <el-table-column label="登录地点" align="center" prop="address" />
       <el-table-column label="浏览器" align="center" prop="userAgent" />
-      <el-table-column label="操作系统" align="center" prop="os" />
-      <el-table-column label="登录状态" align="center" prop="status" :formatter="statusFormat" />
-      <el-table-column label="操作信息" align="center" prop="msg" />
-      <el-table-column label="登录日期" align="center" prop="loginTime" width="180">
+<!--      <el-table-column label="操作系统" align="center" prop="os" />-->
+<!--      <el-table-column label="登录状态" align="center" prop="status" :formatter="statusFormat" />-->
+<!--      <el-table-column label="操作信息" align="center" prop="msg" />-->
+      <el-table-column label="登录日期" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.loginTime) }}</span>
+          <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -218,7 +218,7 @@ export default {
         }).then(function() {
           return exportLogininfor(queryParams);
         }).then(response => {
-          this.download(response.msg);
+          this.fileDownload(response.data, "登陆日志.xlsx");
         }).catch(function() {});
     }
   }

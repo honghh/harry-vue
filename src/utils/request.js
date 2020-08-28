@@ -27,6 +27,12 @@ service.interceptors.request.use(
 
 // 响应拦截器
 service.interceptors.response.use(res => {
+    const urlPath=  res.config.url
+    console.info(urlPath)
+        if (urlPath.indexOf("/export") !== -1 || urlPath.indexOf("/importTemplate") !== -1) {
+            console.info("/export")
+            return res
+        }
     const code = res.data.code
     if (code === 401) {
       MessageBox.confirm(

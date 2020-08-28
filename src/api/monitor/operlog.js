@@ -30,6 +30,7 @@ export function exportOperlog(query) {
   return request({
     url: '/monitor/operlog/export',
     method: 'get',
+    responseType:'blob',
     params: query
   })
 }

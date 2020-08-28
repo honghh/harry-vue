@@ -338,7 +338,7 @@ export default {
         }).then(function() {
           return exportConfig(queryParams);
         }).then(response => {
-          this.download(response.msg);
+          this.fileDownload(response.data, "系统参数.xlsx");
         }).catch(function() {});
     }
   }

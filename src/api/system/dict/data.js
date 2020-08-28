@@ -56,6 +56,7 @@ export function exportData(query) {
   return request({
     url: '/sys/dict/detail/export',
     method: 'get',
+    responseType:'blob',
     params: query
   })
 }

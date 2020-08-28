@@ -30,10 +30,9 @@
 <!--      <el-table-column label="会话编号" align="center" prop="tokenId" :show-overflow-tooltip="true" />-->
       <el-table-column label="登录名称" align="center" prop="username" :show-overflow-tooltip="true" />
       <el-table-column label="部门名称" align="center" prop="job" />
-      <el-table-column label="主机" align="center" prop="address" :show-overflow-tooltip="true" />
-      <el-table-column label="登录地点" align="center" prop="loginLocation" />
+      <el-table-column label="主机" align="center" prop="ip" :show-overflow-tooltip="true" />
+      <el-table-column label="登录地点" align="center" prop="address" />
       <el-table-column label="浏览器" align="center" prop="browser" />
-      <el-table-column label="操作系统" align="center" prop="os" />
       <el-table-column label="登录时间" align="center" prop="loginTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.loginTime) }}</span>

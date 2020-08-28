@@ -344,15 +344,15 @@ export default {
     /** 导出按钮操作 */
     handleExport() {
       const queryParams = this.queryParams;
-      this.$confirm('是否确认导出所有类型数据项?', "警告", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        }).then(function() {
-          return exportType(queryParams);
-        }).then(response => {
-          this.download(response.msg);
-        }).catch(function() {});
+      this.$confirm('是否确认导出所有数据项?', "警告", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(function() {
+        return exportType(queryParams);
+      }).then(response => {
+        this.fileDownload(response.data, "字典管理.xlsx");
+      }).catch(function() {});
     }
   }
 };

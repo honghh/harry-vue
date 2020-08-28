@@ -306,7 +306,7 @@ export default {
         }).then(function() {
           return exportOperlog(queryParams);
         }).then(response => {
-          this.download(response.msg);
+          this.fileDownload(response.data, "操作日志.xlsx");
         }).catch(function() {});
     }
   }

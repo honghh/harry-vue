@@ -18,7 +18,7 @@ import './assets/icons' // icon
 import './permission' // permission control
 import { getDicts } from "@/api/system/dict/data";
 import { getConfigKey } from "@/api/system/config";
-import { parseTime, resetForm, addDateRange, selectDictLabel, download, handleTree } from "@/utils/harry";
+import { parseTime, resetForm, addDateRange, selectDictLabel, download, handleTree,fileDownload } from "@/utils/harry";
 import Pagination from "@/components/Pagination";
 
 // 全局方法挂载
@@ -30,6 +30,7 @@ Vue.prototype.addDateRange = addDateRange
 Vue.prototype.selectDictLabel = selectDictLabel
 Vue.prototype.download = download
 Vue.prototype.handleTree = handleTree
+Vue.prototype.fileDownload = fileDownload
 
 Vue.prototype.msgSuccess = function (msg) {
   this.$message({ showClose: true, message: msg, type: "success" });

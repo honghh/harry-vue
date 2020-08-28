@@ -49,6 +49,7 @@ export function exportUser(query) {
   return request({
     url: '/sys/user/export',
     method: 'get',
+    responseType:'blob',
     params: query
   })
 }
@@ -121,6 +122,7 @@ export function uploadAvatar(data) {
 export function importTemplate() {
   return request({
     url: '/sys/user/importTemplate',
+    responseType:'blob',
     method: 'get'
   })
 }

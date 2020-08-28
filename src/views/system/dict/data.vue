@@ -352,7 +352,7 @@ export default {
         }).then(function() {
           return exportData(queryParams);
         }).then(response => {
-          this.download(response.msg);
+          this.fileDownload(response.data, "字典数据.xlsx");
         }).catch(function() {});
     }
   }

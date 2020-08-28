@@ -632,7 +632,7 @@ export default {
         }).then(function() {
           return exportUser(queryParams);
         }).then(response => {
-          this.download(response.msg);
+          this.fileDownload(response.data, "用户管理.xlsx");
         }).catch(function() {});
     },
     /** 导入按钮操作 */
@@ -643,7 +643,7 @@ export default {
     /** 下载模板操作 */
     importTemplate() {
       importTemplate().then(response => {
-        this.download(response.msg);
+        this.fileDownload(response.data, "用户下载模板.xlsx");
       });
     },
     // 文件上传中处理
